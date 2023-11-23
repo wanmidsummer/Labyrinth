@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+
+      //preload images
+
+      var image1 = new Image(); //background_1
+      image1.src = 'http://drive.google.com/uc?export=view&id=1OpLSOObDTqCZfURk34hdWP0tMtL1nkcj';
+
+      var image2 = new Image(); //background
+      image2.src = 'http://drive.google.com/uc?export=view&id=1ZHwZgPjYCrhRitwSABsg9dY9aae-Tk3Q';
+
+      var image3 = new Image(); //background_2
+      image3.src = 'http://drive.google.com/uc?export=view&id=1CNc2GS3JTbaYLRnYu2VDf79znnSZ3yb6';
+
+      var image4 = new Image(); //background_4
+      image3.src = 'http://drive.google.com/uc?export=view&id=1cXwRDWGxC4QAUYmTZe0k62uqw2C6qRxo';
+
+      var image5 = new Image(); //img1
+      image3.src = 'http://drive.google.com/uc?export=view&id=1VrCPdlizmuJrQnTdQewp0faVtEGmWsZG';
+
+      var image6 = new Image(); //img2
+      image3.src = 'http://drive.google.com/uc?export=view&id=1UUKAN31dnr2MVfDvv-V2rGrzqKV5F8Sj';
+
+      var image7 = new Image(); //img3
+      image3.src = 'http://drive.google.com/uc?export=view&id=1hyKwXssjgR7u0xz2fTxIhN9NiV4Q0_UK';
+
+      var image8 = new Image(); //img4
+      image3.src = 'http://drive.google.com/uc?export=view&id=1CLO9thtzzpLFY9rlXkrLxxnsqWkNhc2c';
+
+      var image9 = new Image(); //img5
+      image3.src = 'http://drive.google.com/uc?export=view&id=1QDI0Cii0duJi4TLW9hxrbA6VPvJfIURl';
+
+      var image10 = new Image(); //img6
+      image3.src = 'http://drive.google.com/uc?export=view&id=1N-_2v7ifN8Wf9M5QCS1RqV-liSkHtE_n';
+
+      var image11 = new Image(); //img7
+      image3.src = 'http://drive.google.com/uc?export=view&id=1P3Rt_RYZ7CVsqcS2xPg8r8wjcTnE1hga';
+
+      var image12 = new Image(); //img8
+      image3.src = 'http://drive.google.com/uc?export=view&id=11RSiOttDmoQaO0_lZLalCPzGfxOl8sgO';
+
+      var image13 = new Image(); //background_3
+      image3.src = 'http://drive.google.com/uc?export=view&id=1RjjMQ32vbdHpmAKju-y-vIKjrLXc4uTF';
+
+      // Add more images as needed
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LABYRINTH</title>
+    <style>
+      @font-face {
+        font-family: 'DOSMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSMyungjo.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000000;
+            font-family: 'DOSMyungjo';
+        }
+
+        .panel {
+            position: absolute;
+            top: 10%;
+            left: 38.5%;
+            width: 41.5%;
+            height: 60%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loadingScreen,
+        #titleScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('http://drive.google.com/uc?export=view&id=1OpLSOObDTqCZfURk34hdWP0tMtL1nkcj') center/contain no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'DOSMyungjo';
+            color: #ede9e8;
+            font-size: 24px;
+        }
+        #endScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('http://drive.google.com/uc?export=view&id=1RjjMQ32vbdHpmAKju-y-vIKjrLXc4uTF') center/contain no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'DOSMyungjo';
+            color: #980002;
+            font-size: 36px;
+        }
+        #gameScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('http://drive.google.com/uc?export=view&id=1OpLSOObDTqCZfURk34hdWP0tMtL1nkcj') center/contain no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'DOSMyungjo';
+            color: #ede9e8;
+            font-size: 15px;
+            white-space: pre-wrap;
+        }
+
+        #loadingScreen {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #titleScreen,
+        #gameScreen {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #loadingText,
+        #endText,
+        #titleText,
+        #gameText {
+            text-align: center;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: transparent;
+            color: #ede9e8;
+            border: 2px solid #ede9e8;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'DOSMyungjo';
+            opacity: 0.5;
+        }
+
+        button:hover {
+            background-color: #ede9e8;
+            color: black;
+            opacity: 0.5;
+        }
+
+        #gameImage {
+            max-height: 40%;
+            width: auto;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 10px;
+            margin-bottom: 10px;
+            font-family: 'DOSMyungjo';
+        }
+
+        #answerButton {
+            padding: 5px 10px;
+            font-size: 10px;
+            cursor: pointer;
+            background-color: transparent;
+            color: #ede9e8;
+            border: 2px solid #ede9e8;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'DOSMyungjo';
+        }
+
+        #answerButton:hover {
+            background-color: #ede9e8;
+            color: black;
+        }
+
+        a:link {
+          color : #e77e80;
+        }
+        a:visited {
+          color : #e77e80;
+        }
+        a:hover {
+          color : #e77e80;
+        }
+        a:active {
+          color : #e77e80;
+        }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen">
+        <div class="panel">
+            <div id="loadingText">LOADING...0%</div>
+        </div>
+    </div>
+    <div id="titleScreen">
+        <div class="panel">
+            <div id="titleText">LABYRINTH</div>
+            <button id="startButton" onclick="startGame()">START</button>
+        </div>
+    </div>
+    <div id="gameScreen">
+        <div class="panel">
+            <div id="gameText">
+                익숙한 건물이 눈에 들어온다.<br>
+                어두운 밤 불 꺼진 학교 기숙사지만,<br>
+                떠오르는 추억들 때문에 오히려 따뜻하게 느껴진다.<br>
+                도착하면 열어보라고 받은 상자를 본다.
+            </div>
+            <img id="gameImage" src="http://drive.google.com/uc?export=view&id=1VrCPdlizmuJrQnTdQewp0faVtEGmWsZG">
+            <input type="text" id="answerInput" placeholder="Type your answer...">
+            <button id="answerButton" onclick="checkAnswer()">정답</button>
+        </div>
+    </div>
+    <div id="endScreen">
+        <div class="panel">
+            <div id="endText"><a href="https://youtu.be/dQw4w9WgXcQ?si=1CU7lFEzICTkX7vW">마침내.</a></div>
+        </div>
+    </div>
+
+    <script>
+      let currentQuestion = 0;
+        const questions = [
+            {
+                text: "익숙한 건물이 눈에 들어온다.\n어두운 밤 불 꺼진 학교 기숙사지만,\n떠오르는 추억들 때문에 오히려 따뜻하게 느껴진다.\n도착하면 열어보라고 받은 상자를 본다.",
+                image: "http://drive.google.com/uc?export=view&id=1VrCPdlizmuJrQnTdQewp0faVtEGmWsZG",
+                answer: "school"
+            },
+            {
+                text: "상자 안에는 편지와 열쇠가 들어있다.\n\"널 위해 준비했어\"\n기숙사 건물 뒤 창고의 열쇠다.\n오래된 창고 문을 열고 들어가자,\n작은 간이 발전기가 눈에 들어온다.",
+                image: "http://drive.google.com/uc?export=view&id=1UUKAN31dnr2MVfDvv-V2rGrzqKV5F8Sj",
+                answer: "light"
+            },
+            {
+                text: "발전기를 켜자, 복도에 비상 조명이 들어온다.\n조명의 불빛에 바닥에 그려진 화살표가 보인다.\n화살표를 따라가 보니 자물쇠로 잠긴 방이 있다.",
+                image: "http://drive.google.com/uc?export=view&id=1hyKwXssjgR7u0xz2fTxIhN9NiV4Q0_UK",
+                answer: "present"
+            },
+            {
+                text: "방 안 책상 위에는 오래된 컴퓨터가 한 대 있다.\n컴퓨터 옆에는 선물 포장된 상자가 있다.\n상자를 열자, 게임<LABYRINTH>의 CD가 있다.",
+                image: "http://drive.google.com/uc?export=view&id=1CLO9thtzzpLFY9rlXkrLxxnsqWkNhc2c",
+                answer: "run"
+            },
+            {
+                text: "익숙한 건물이 눈에 들어온다.\n어두운 밤 불 꺼진 학교 기숙사지만,\n망가진 건물의 역겨운 풍경이 눈에 선하다.\n도착하면 열어보라고 받은 상자를 본다.",
+                image: "http://drive.google.com/uc?export=view&id=1QDI0Cii0duJi4TLW9hxrbA6VPvJfIURl",
+                answer: "nightmare"
+            },
+            {
+                text: "상자 안에는 도̵̡̢͔̣͎̆͆͒̽망̶̣̦̉̕ͅ쳐̴̡̟̭̄̏͝도̶͙̬̊͂̂̚망̶̹̬̄͑쳐̵̦̟̟͍̳̭̀도̴̖͚̲̫̑̈́망̶̧̛͓̂̈́̏͘쳐̵̜̝̭̆͊́̀͜도̴̗̙̝́͋̓͂͋͝망̶̖̺̱͖̲̿̏ͅ쳐̴̙̎͑͊͛̌와 열쇠가 들어있다.\n기숙사 건물 뒤 창고의 열쇠다.\n창고 문은 검붉은 액체로 범벅이 되어 있다.\n창고 안에는 간이 발전기가 있다.",
+                image: "http://drive.google.com/uc?export=view&id=1N-_2v7ifN8Wf9M5QCS1RqV-liSkHtE_n",
+                answer: "revenge"
+            },
+            {
+                text: "발전기는 고장났는지 반응이 없다.\n멀리서 쿵, 하는 소리가 들린다.\n없어야 할 누군가가 이곳에 있다.\n비명소리를 애써 무시하며 방 앞에 다다른다.\n방 문에는 붉은 X표시가 되어있다.",
+                image: "http://drive.google.com/uc?export=view&id=1P3Rt_RYZ7CVsqcS2xPg8r8wjcTnE1hga",
+                answer: "specter"
+            },
+            {
+                text: "방 안 책상 위에는 오래된 컴퓨터가 한 대 있다.\n컴퓨터 앞에 누군가가 앉아있다.\n그는",
+                image: "http://drive.google.com/uc?export=view&id=11RSiOttDmoQaO0_lZLalCPzGfxOl8sgO",
+                answer: "dead"
+            }
+        ];
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let loadingText = document.getElementById("loadingText");
+            let titleScreen = document.getElementById("titleScreen");
+            let loadingScreen = document.getElementById("loadingScreen");
+            let endScreen=document.getElementById("endScreen");
+            
+            endScreen.style.opacity=0;
+            endScreen.style.pointerEvents="none";
+
+            // Simulate loading progress
+            for (let i = 0; i <= 100; i++) {
+                setTimeout(function () {
+                    loadingText.textContent = `LOADING...${i}%`;
+
+                    // When loading is complete, fade in the title screen
+                    if (i === 100) {
+                        loadingScreen.style.opacity = 0;
+                        loadingScreen.style.pointerEvents = "none";
+                        titleScreen.style.opacity = 1;
+                        titleScreen.style.pointerEvents = "auto";
+                        gameScreen.style.pointerEvents = "none";
+                    }
+                }, i * 50); // Each step takes 0.5 seconds (50 milliseconds * i)
+            }
+        });
+
+        function startGame() {
+            let titleScreen = document.getElementById("titleScreen");
+            let gameScreen = document.getElementById("gameScreen");
+
+            titleScreen.style.opacity = 0;
+            titleScreen.style.pointerEvents = "none";
+            gameScreen.style.opacity = 1;
+            gameScreen.style.pointerEvents = "auto";
+            showCurrentQuestion();
+        }
+        function showCurrentQuestion() {
+            let gameText = document.getElementById("gameText");
+            let gameImage = document.getElementById("gameImage");
+
+            // Clear the current text
+            gameText.innerHTML = '';
+            gameImage.src = '';
+            // Display the text one character at a time
+            const textToDisplay = questions[currentQuestion].text;
+            let index = 0;
+            const typingInterval = setInterval(function () {
+                gameText.innerHTML += textToDisplay[index++];
+                if (index === textToDisplay.length) {
+                    clearInterval(typingInterval);
+                    gameImage.src = questions[currentQuestion].image;
+                }
+            }, 50);
+        }
+/*        function showCurrentQuestion() {
+            let gameText = document.getElementById("gameText");
+            let gameImage = document.getElementById("gameImage");
+
+            gameText.textContent = questions[currentQuestion].text;
+            gameImage.src = questions[currentQuestion].image;
+        }*/
+        function checkAnswer() {
+            let answerInput = document.getElementById("answerInput").value.toLowerCase();
+            let correctAnswer = questions[currentQuestion].answer;
+
+            let loadingText = document.getElementById("loadingText");
+            let titleScreen = document.getElementById("titleScreen");
+            let loadingScreen = document.getElementById("loadingScreen");
+            let gameScreen = document.getElementById("gameScreen");
+            let endScreen=document.getElementById("endScreen");
+
+            if (answerInput === correctAnswer) {
+              document.getElementById("answerInput").value="";      
+              currentQuestion++;              
+              if (currentQuestion === 4) {
+                // Replay loading sequence
+
+                // Change background to background_2.png
+                titleScreen.style.background = `url('http://drive.google.com/uc?export=view&id=1cXwRDWGxC4QAUYmTZe0k62uqw2C6qRxo') center/contain no-repeat`;
+                loadingScreen.style.background = `url('http://drive.google.com/uc?export=view&id=1cXwRDWGxC4QAUYmTZe0k62uqw2C6qRxo') center/contain no-repeat`;
+
+                loadingScreen.style.color="#e77e80";
+                titleScreen.style.color="#e77e80";
+
+                document.getElementById("startButton").style.color="#e77e80";
+                document.getElementById("startButton").style.borderColor="#e77e80";
+                
+                gameScreen.style.opacity = 0;
+                loadingScreen.style.opacity = 1;
+                loadingScreen.style.pointerEvents = "auto";
+                titleScreen.style.pointerEvents = "none";
+                gameScreen.style.pointerEvents = "none";
+                gameScreen.style.background = `url('http://drive.google.com/uc?export=view&id=1CNc2GS3JTbaYLRnYu2VDf79znnSZ3yb6') center/contain no-repeat`;
+                gameScreen.style.color="#e77e80";
+                document.getElementById("answerButton").style.color="#e77e80";
+                document.getElementById("answerButton").style.borderColor="#e77e80";
+
+                // Simulate loading progress
+                for (let i = 0; i <= 100; i++) {
+                    setTimeout(function () {
+                        loadingText.textContent = `LOADING...${i}%`;
+
+                        // When loading is complete, fade in the title screen
+                        if (i === 100) {
+                            loadingScreen.style.opacity = 0;
+                            loadingScreen.style.pointerEvents = "none";
+                            titleScreen.style.opacity = 1;
+                            titleScreen.style.pointerEvents = "auto";
+                        }
+                    }, i * 50); // Each step takes 0.5 seconds (50 milliseconds * i)
+                }
+                //startGame();
+              }
+              else if (currentQuestion === 7) {
+                gameScreen.style.background = `url('http://drive.google.com/uc?export=view&id=1RjjMQ32vbdHpmAKju-y-vIKjrLXc4uTF') center/contain no-repeat`;
+                showCurrentQuestion();
+              }
+              else {
+                // Correct answer, move to the next question
+                if (currentQuestion < questions.length) {
+                    showCurrentQuestion();
+                } else {
+                  gameScreen.style.opacity=0;
+                  gameScreen.style.pointerEvents="none";
+                  endScreen.style.opacity=1;
+                  endScreen.style.pointerEvents="auto";
+                } 
+              }
+            } else {
+                // Incorrect answer, you can add feedback or do other actions
+                alert('오답입니다. 다시 시도하십시오.');
+            }
+        }
+    </script>
+</body>
+</html>
