@@ -164,6 +164,27 @@
             opacity: 0.5;
         }
 
+
+
+        #endbutton {
+            padding: 10px 20px;
+            font-size: 36px;
+            cursor: pointer;
+            background-color: transparent;
+            color: #e77e80;
+            border: 2px solid #e77e80;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'DOSMyungjo';
+            opacity: 0.5;
+        }
+
+        #endbutton:hover {
+            background-color: #e77e80;
+            color: black;
+            opacity: 0.5;
+        }
+
         #gameImage {
             max-height: 40%;
             width: auto;
@@ -236,11 +257,51 @@
     </div>
     <div id="endScreen">
         <div class="panel">
-            <div id="endText"><a href="https://youtu.be/aXmcnQZ0RIg">마침내.</a></div>
+            <button id="endbutton" onclick="openLink()">마침내.</button>
         </div>
     </div>
 
     <script>
+
+    window.onload = function () {
+               document.addEventListener("contextmenu", function (e) {
+                   e.preventDefault();
+               }, false);
+               document.addEventListener("keydown", function (e) {
+                   //document.onkeydown = function(e) {
+                   // "I" key
+                   if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+                       disabledEvent(e);
+                   }
+                   // "J" key
+                   if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+                       disabledEvent(e);
+                   }
+                   // "S" key + macOS
+                   if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                       disabledEvent(e);
+                   }
+                   // "U" key
+                   if (e.ctrlKey && e.keyCode == 85) {
+                       disabledEvent(e);
+                   }
+                   // "F12" key
+                   if (event.keyCode == 123) {
+                       disabledEvent(e);
+                   }
+               }, false);
+               function disabledEvent(e) {
+                   if (e.stopPropagation) {
+                       e.stopPropagation();
+                   } else if (window.event) {
+                       window.event.cancelBubble = true;
+                   }
+                   e.preventDefault();
+                   return false;
+               }
+           }
+
+
       let currentQuestion = 0;
         const questions = [
             {
@@ -310,6 +371,10 @@
                 }, i * 50); // Each step takes 0.5 seconds (50 milliseconds * i)
             }
         });
+
+        function openLink() {
+            window.location.href = "https://youtu.be/aXmcnQZ0RIg";
+        }
 
         function startGame() {
             let titleScreen = document.getElementById("titleScreen");
@@ -418,6 +483,7 @@
                 alert('오답입니다. 다시 시도하십시오.');
             }
         }
+
     </script>
 </body>
 </html>
